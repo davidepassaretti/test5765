@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.0.0/aframe/build/aframe-ar.js"></script>
+  </head>
+
+  <body style="margin: 0; overflow: hidden">
+    <a-scene
+      embedded
+      loading-screen="enabled: false;"
+      arjs="sourceType: webcam; debugUIEnabled: false;"
+    >
+      <a-assets>
+        <video
+          id="vid"
+          src="https://cdn.glitch.me/584989a3-69ba-4291-b696-8f2b5d05b297/LAVA10.mp4?v=1743348645168" 
+          preload="auto"
+          loop
+          muted
+          playsinline
+          crossorigin
+        ></video>
+      </a-assets>
+
+      <a-video
+        id="videoEntity"
+        src="#vid"
+        position="0 0.1 0"
+        rotation="-90 0 0"
+        look-at="[gps-camera]"
+        smooth="true"
+        smoothCount="10"
+        smoothTolerance="0.01"
+        smoothThreshold="5"
+        scale="5 5 5 "
+        gps-entity-place="latitude: 42.8921339; longitude: 13.832393;"
+      ></a-video>
+
+      <a-camera gps-camera rotation-reader></a-camera>
+    </a-scene>
+
+    <script>
+      // Attivare il video al caricamento
+      document.querySelector('#vid').play();
+    </script>
+  </body>
+</html>
